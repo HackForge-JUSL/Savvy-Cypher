@@ -124,7 +124,7 @@ export default function EditProfile() {
               </Button>
               <Grid container justifyContent="flex-end" sx={{mb:2}}>
                 <Grid item>
-                  <Link href="#" variant="body2" >
+                  <Link href="/landing" variant="body2" >
                     Cancel
                   </Link>
                 </Grid>
@@ -134,5 +134,5 @@ export default function EditProfile() {
         </Box>
       </Container>
     </ThemeProvider>
-    );
+  );
 }

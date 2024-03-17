@@ -14,7 +14,9 @@ import {
   MenuItem,
   Select,
 } from '@mui/material';
+import axios from 'axios'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const theme = createTheme();
 
@@ -36,8 +38,11 @@ export default function SignUp() {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add your logic to handle form submission (e.g., send data to server)
-    // For now, just logging form data to console
+    axios.post('http://localhost:3000/signup', formData)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -50,10 +55,10 @@ export default function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            border:'solid thick #FC6736',
+            border: 'solid thick #FC6736',
             borderRadius: '2%',
-            opacity:'90%',
-            backgroundColor:'lavenderblush'
+            opacity: '90%',
+            backgroundColor: 'lavenderblush'
           }}
         >
           <Avatar sx={{ mt: 2, bgcolor: 'secondary.main' }}></Avatar>
@@ -61,7 +66,7 @@ export default function SignUp() {
             Sign up
           </Typography>
           <form onSubmit={onSubmit} method="post" action="/signup">
-            <Box sx={{ mt: 1, mr: 2, ml:2 }}>
+            <Box sx={{ mt: 1, mr: 2, ml: 2 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -149,13 +154,18 @@ export default function SignUp() {
               >
                 Sign up
               </Button>
-              <Grid container justifyContent="flex-end" sx={{mb:2}}>
-                <Grid item>
-                  <Link href="#" variant="body2" >
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
+              <Grid container sx={{ mb: '10px' }}>
+              <Grid item xs>
+                <Link href="/" variant="body2">
+                  <ArrowBackIcon/>
+                </Link>
               </Grid>
+              <Grid item>
+                <Link href="/" variant="body2">
+                  Already have an account? Sign In
+                </Link>
+              </Grid>
+            </Grid>
             </Box>
           </form>
         </Box>
